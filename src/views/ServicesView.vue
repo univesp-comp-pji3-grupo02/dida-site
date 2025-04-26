@@ -38,6 +38,9 @@ export default {
   justify-content: center;
   align-items: center;
 }
+.services-conteiner{
+  max-width: 90%;
+}
 .itens{
   display: flex;
   justify-content: center;

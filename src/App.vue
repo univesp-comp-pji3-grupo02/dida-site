@@ -1,35 +1,49 @@
 <template>
   <div id="app">
-    <nav class="nav-top-icons">
-      <div class="nav-top-icons-left-buttons">
-        <button id="home-button">
-          <img class="home-icon-filter" src="img/icons/home-icon.svg" alt="home button">
-        </button>
+    <nav class="nav-icons nav-top-icons">
+        <div class="nav-top-icons-left-buttons">
+          <button id="home-button" @click="isMenuOpen = true">
+            <img class="home-icon-filter" src="img/icons/bars-menu-icon.svg" alt="home button">
+          </button>
+        </div>
+        <div class="nav-top-icons-right-buttons">
+          <button class="home-icon-filter" id="back-button">
+            <img src="img/icons/back-icon.svg" alt="back button">
+          </button>
+          <button id="refresh-button">
+            <img class="home-icon-filter" src="img/icons/refresh-icon.svg" alt="refresh button">
+          </button>
+        </div>
+
+      </nav>
+      <div class="nav-side-menu" v-if="isMenuOpen">
+        <NavMenu @close-nav="isMenuOpen = false" />
       </div>
-      <div class="nav-top-icons-right-buttons">
-        <button class="home-icon-filter" id="back-button">
-          <img src="img/icons/back-icon.svg" alt="back button">
-        </button>
-        <button id="refresh-button">
-          <img class="home-icon-filter" src="img/icons/refresh-icon.svg" alt="refresh button">
-        </button>
-      </div>
-    </nav>
+
     <DidaLogo />
-    <router-view/>
-  <footer>
-    <p>© 2023 Dida. Todos os direitos reservados.</p>
-    <p>Desenvolvido por <a href="#">PJI 310-sala 005 grupo 022 </a></p>
-  </footer>
-</div>
+    <router-view />
+
+    <footer>
+      <p>© 2023 Dida. Todos os direitos reservados.</p>
+      <p>Desenvolvido por <a href="#">PJI 310-sala 005 grupo 022 </a></p>
+    </footer>
+  </div>
 </template>
+
 <script>
+import { ref } from 'vue'
 import DidaLogo from './components/InitialLogo.vue'
+import NavMenu from './components/navMenu.vue'
 
 export default {
   name: 'App',
   components: {
-    DidaLogo
+    DidaLogo,
+    NavMenu
+  },
+  setup () {
+    const isMenuOpen = ref(false)
+    return { isMenuOpen }
   }
 }
 </script>
@@ -40,13 +54,20 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
+.nav-icons{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .nav-top-icons {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   background-color: #dcaf95;
   width: 100%;
-  padding: 0;
+  padding: 0 2rem;
 }
 .nav-top-icons button{
   background-color: transparent;
@@ -98,7 +119,7 @@ nav a {
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: #9B6F58;
 }
 
 body {

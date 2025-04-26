@@ -30,6 +30,7 @@
       <button
         class="date"
         v-for="day in monthDays"
+        @click="$emit('openModal', day.fullDate)"
         :key="`current-${day.date}`"
         :class="{
           active: isToday(day.fullDate),

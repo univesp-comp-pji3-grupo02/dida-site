@@ -1,22 +1,45 @@
+
 <template>
-  <div class="home">
-    <ul class="nav-list">
-    <li><router-link to="/welcome">Boas Vindas</router-link></li>
-    <li><router-link to="/about">Sobre Nós</router-link></li>
-    <li><router-link to="/services">Serviços</router-link></li>
-    <li><router-link to="/scheduling">Agendamento</router-link></li>
-    <li><router-link to="/contact">Contatos</router-link></li>
-  </ul>
-  <router-view/>
+  <div class="welcome">
+    <div class="welcome-h1">
+      <h1>Bem Vindos</h1>
+    </div>
+    <div class="welcome-text">
+      <p>
+        Entregue-se à experiência de um atendimento único e personalizado, em nosso sofisticado espaço no coração do bairro de Zaíra, totalmente dedicado à beleza.</p> <br>
+      <p>
+        Apaixonados pela arte de valorizar a beleza natural estou sempre atualizada com as tendências de moda e as novas técnicas do mercado, para garantir as melhores experiências aos nossos clientes.
+      </p>
+      <p>
+        Venha descobrir como o <strong>Dida Cabeleireira</strong> é capaz de valorizar sua beleza e revelar sua personalidade.
+      </p>"
+      <p>
+      <strong>Horário de funcionamento</strong>
+      Terça a sábado das 9 às 18h.
+    </p>
+    </div>
   </div>
 </template>
+
 <style>
-.nav-list li{
-margin-bottom: 1.2rem;
+.welcome{
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
 }
-.nav-list a{
-  color: #000;
-  font-family: "Archtects Daughter", cursive;
-  font-size: 2rem;
-  }
+
+.welcome-text{
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
+padding: 2rem;
+background-color: #e0b79f;
+width: 80%;
+border-radius: 30px;
+}
+
 </style>
