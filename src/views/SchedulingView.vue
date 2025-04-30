@@ -1,49 +1,27 @@
 <template>
     <div class="scheduling">
-      <div class="scheduling-h1">
-        <h1>Agendar atendimento</h1>
-      </div>
-      <div class="scheduling-container">
-        <CalendarGrid @openModal="openModal" />
-      </div>
-    <div class="map-key">
-      <div class="map-key-item">
-        <div id="key-unavailable" class="key"></div><span>Indisponivel</span>
-      </div>
-      <div class="map-key-item">
-        <div id="key-today" class="key"></div><span>Hoje</span>
-      </div>
-      <div class="map-key-item">
-        <div id="key-available" class="key"></div><span>Disponivel</span>
-      </div>
-    </div>
-    </div>
-    <div class="scheduling-modal">
-      <div class="scheduling-modal-container">
-        <button @click="closeModal" id="close-modal-button">&times;</button>
-        <div class="service-modal">
-          <h1>Serviços</h1>
-        </div>
-        <div class="scheduling-time-modal">
-          <span>08:00</span>
-          <span>09:00</span>
-          <span>10:00</span>
-          <span>11:00</span>
-          <span>12:00</span>
-          <span>13:00</span>
-          <span>14:00</span>
-          <span>15:00</span>
-          <span>16:00</span>
-          <span>17:00</span>
-          <span>18:00</span>
-          <span>19:00</span>
-        </div>
+      <div class="stepConteiner">
+        <component :is="currentStepComponent" @next="nextStep" @prev="prevStep"  @cancel="cancelStep" @postScheduling="postSchedulingDetails"/>
       </div>
 
     </div>
-  </template>
+    </template>
 <style>
-/* general styles */
+.button-prev-next{
+  font-size: 2rem;
+  margin-top: 0.625rem;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  list-style: none;
+  border-radius: 3.1875rem;
+  min-width: fit-content;
+  background-color: #e0b79f;
+  font-family: "Archtects Daughter", cursive;
+  padding: 0 1rem;
+  border: none;
+  color:#9B6F58;
+}
 .scheduling{
   display: flex;
   flex-direction: column;
@@ -115,18 +93,15 @@
 .scheduling-modal-container{
   background-color: #73361b;
   width: 70%;
-  height: 70%;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
   border-radius: 10px;
+  padding: 1rem 2rem;
 }
-.scheduling-modal-container button{
-  background-color: transparent;
-  font-size: 3rem;
-  border: none;
-  }
+
 #close-modal-button{
   position: absolute;
   top: 0;
@@ -155,24 +130,68 @@
   color: #000;
   font-weight: bold;
 }
+.stepConteiner{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+#cancel-button{
+  margin-top: 2rem;
+  font-size: 1.2rem;
+}
 </style>
 <script>
-import CalendarGrid from '@/components/calendar.vue'
-
+import dateStep from '@/components/dateStep.vue'
+import serviceStep from '@/components/serviceStep.vue'
+import dataStep from '@/components/dataStep.vue'
+import confirmationStep from '@/components/confirmationStep.vue'
 export default {
+  name: 'SchedulingView',
   components: {
-    CalendarGrid
+    dateStep,
+    serviceStep,
+    dataStep
+  },
+  data () {
+    return {
+      Services: {
+        corte: { price: 50, duration: 30 },
+        barba: { price: 30, duration: 20 },
+        'corte-barba': { price: 70, duration: 50 },
+        'corte-cabelo': { price: 50, duration: 30 },
+        'corte-cabelo-barba': { price: 80, duration: 60 },
+        'corte-cabelo-barba-sobrancelha': { price: 90, duration: 70 }
+      },
+      selectedService: null,
+      step: 1
+    }
+  },
+  computed: {
+    currentStepComponent () {
+      return {
+        1: serviceStep,
+        2: dateStep,
+        3: dataStep,
+        4: confirmationStep
+
+      }[this.step]
+    }
   },
   methods: {
-    openModal () {
-      const modal = document.querySelector('.scheduling-modal')
-      modal.style.visibility = 'visible'
-      modal.style.opacity = '1'
+    nextStep () {
+      if (this.step < 4) this.step++
     },
-    closeModal () {
-      const modal = document.querySelector('.scheduling-modal')
-      modal.style.visibility = 'hidden'
-      modal.style.opacity = '0'
+    prevStep () {
+      if (this.step > 1) this.step--
+    },
+    cancelStep () {
+      this.step = 1
+    },
+    postSchedulingDetails () {
+      this.$router.push('/welcome')
     }
   }
 }
