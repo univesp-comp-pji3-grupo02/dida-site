@@ -52,7 +52,7 @@ export default {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(this.selectedServices)
+        body: JSON.stringify(this.selectedServices) // Lista de objetos
       })
         .then(response => response.json())
         .then(data => {
