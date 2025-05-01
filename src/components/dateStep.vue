@@ -16,7 +16,6 @@
         <div id="key-available" class="key"></div><span>Disponivel</span>
       </div>
     </div>
-    <button class="button-prev-next" @click="$emit('next')" >Continuar</button>
     <button class="button-prev-next" @click="$emit('prev')" >Voltar</button>
     <div class="scheduling-modal">
       <div class="scheduling-modal-container">
