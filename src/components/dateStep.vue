@@ -1,6 +1,12 @@
 <template>
+    <div class="stepper">
+      <div class="circle">1</div>
+      <div class="arrow"><img src="img/icons/right-arrow.svg" alt="right-arrow"></div>
+      <div class="step">Data</div>
+      <div class="arrow"><img src="img/icons/right-arrow.svg" alt="right-arrow"></div>
+      <div class="circle">3</div>
+    </div>
     <div class="scheduling-h1">
-    <h1>Agendar atendimento</h1>
     </div>
     <div class="scheduling-container">
       <CalendarGrid @openModal="openModal" />

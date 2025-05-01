@@ -1,7 +1,13 @@
 <template>
   <div>
+    <div class="stepper">
+      <div class="step">Serviços</div>
+      <div class="arrow"><img src="img/icons/right-arrow.svg" alt="right-arrow"></div>
+      <div class="circle">2</div>
+      <div class="arrow"><img src="img/icons/right-arrow.svg" alt="right-arrow"></div>
+      <div class="circle">3</div>
+    </div>
     <div class="scheduling-services-container">
-      <h1>SERVIÇOS</h1>
       <div
         class="scheduling-services-sub-container"
         v-for="(svc, key) in services"
@@ -131,4 +137,5 @@ export default {
 .checkbox-container input:checked + .checkmark::after {
   display: block;
 }
+
 </style>

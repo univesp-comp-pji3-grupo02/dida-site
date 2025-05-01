@@ -148,6 +148,38 @@
   height: 2rem;
   border-radius: 10px;
 }
+.stepper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 20px;
+    }
+
+    .step {
+      background-color: #a36f57; /* cor da bolha "Serviços" */
+      color: black;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 999px;
+    }
+
+    .circle {
+      background-color: #e5bda5;
+      color: black;
+      font-weight: bold;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .arrow {
+      height: 20px;
+      width: 20px;
+    }
+
 </style>
 
 <script>
@@ -166,9 +198,9 @@ export default {
   data () {
     return {
       services: {
-        agendamento: {
+        avaliacao: {
           id: 0,
-          name: 'Agendamento',
+          name: 'Avaliação',
           price: 0,
           duration: 10,
           fixedValue: true
@@ -272,7 +304,7 @@ export default {
           fixedValue: true
         }
       },
-      step: 1
+      step: 3
     }
   },
   computed: {
