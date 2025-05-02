@@ -13,7 +13,7 @@
     <p><strong><img src="img/icons/cashIcon.svg" alt="icon of a money bill" class="svgIcons"> Valor estimado:</strong> a partir deR$120,00</p>
 </div>
 <button class="button-prev-next" @click="$emit('postScheduling')" >Agendar</button>
-<button id="cancel-button" class="button-prev-next" @click="$emit('cancel')" >cancelar</button>
+<button id="cancel-button" class="button-prev-next" @click="$emit('prev')" >cancelar</button>
 </template>
 
 <style>

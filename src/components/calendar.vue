@@ -30,7 +30,7 @@
       <button
         class="date"
         v-for="day in monthDays"
-        @click="$emit('openModal', day.fullDate)"
+        @click="$emit('openModal', day.fullDate, sendFullDate(day.fullDate))"
         :key="`current-${day.date}`"
         :class="{
           active: isToday(day.fullDate),
@@ -59,13 +59,14 @@
 const WEEK_DAYS = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sab']
 // Exemplos de dias sem disponibilidade (strings no formato 'DD/MM/YYYY')
 const notAvailableDays = ['01/05/2025', '02/05/2025', '03/05/2025', '04/05/2025', '05/05/2025']
-
+let datetest = ''
 export default {
   name: 'CalendarGrid',
   data () {
     return {
       weekDayNames: WEEK_DAYS,
-      currentDate: new Date()
+      currentDate: new Date(),
+      datetest
     }
   },
   computed: {
@@ -135,6 +136,10 @@ export default {
         ? date.toLocaleDateString('pt-BR')
         : date
       return !notAvailableDays.includes(dateString)
+    },
+    sendFullDate (date) {
+      datetest = date
+      console.log(datetest)
     }
   }
 }

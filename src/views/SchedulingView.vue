@@ -1,7 +1,7 @@
 <template>
     <div class="scheduling">
       <div class="stepConteiner">
-        <component :is="currentStepComponent" @next="nextStep" @prev="prevStep"  @cancel="cancelStep" @postScheduling="postSchedulingDetails" :services="services"/>
+        <component :is="currentStepComponent" @next="nextStep" @prev="prevStep" @postScheduling="postSchedulingDetails" :services="services"/>
       </div>
     </div>
 </template>
@@ -81,19 +81,25 @@
 
 .scheduling-time-modal {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   padding: 0 2rem;
 }
 
-.scheduling-time-modal span {
+.scheduling-time-modal button {
   background-color: #BA8B7B;
   color: #000;
-  padding: 1rem;
+  padding: 1rem 2rem;
   border-radius: 10px;
   text-align: center;
   font-size: 1rem;
   font-weight: bold;
+  margin-bottom: 0.5rem;
+  border: none;
+  cursor: pointer;
+}
+.scheduling-time-modal button:hover {
+  background-color: #e0b79f;
 }
 
 #cancel-button {
@@ -304,7 +310,7 @@ export default {
           fixedValue: true
         }
       },
-      step: 3
+      step: 1
     }
   },
   computed: {
@@ -324,9 +330,6 @@ export default {
     },
     prevStep () {
       if (this.step > 1) this.step--
-    },
-    cancelStep () {
-      this.step = 1
     },
     postSchedulingDetails () {
       this.$router.push('/welcome')

@@ -50,23 +50,28 @@ export default {
   },
   methods: {
     sendSelectedServices () {
-      this.$emit('selectedServices', this.selectedServices)
-      this.$emit('next')
-      console.log(this.selectedServices)
-      fetch('http://localhost:8000/scheduling', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(this.selectedServices) // Lista de objetos
-      })
-        .then(response => response.json())
-        .then(data => {
-          console.log('Success:', data)
-        })
-        .catch((error) => {
-          console.error('Error:', error)
-        })
+      if (this.selectedServices.length === 0) {
+        alert('Selecione pelo menos um serviço')
+        return 0
+      } else {
+        this.$emit('selectedServices', this.selectedServices)
+        this.$emit('next')
+        console.log(this.selectedServices)
+        // fetch('http://localhost:8000/scheduling', {
+        //  method: 'POST',
+        //  headers: {
+        //    'Content-Type': 'application/json'
+        //  },
+        //  body: JSON.stringify(this.selectedServices) // Lista de objetos
+        // })
+        //  .then(response => response.json())
+        //  .then(data => {
+        //    console.log('Success:', data)
+        //  })
+        //  .catch((error) => {
+        //    console.error('Error:', error)
+        //  })
+      }
     }
   }
 }
