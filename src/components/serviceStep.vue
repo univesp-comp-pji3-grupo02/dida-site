@@ -56,7 +56,6 @@ export default {
       } else {
         this.$emit('selectedServices', this.selectedServices)
         this.$emit('next')
-        console.log(this.selectedServices)
         // fetch('http://localhost:8000/scheduling', {
         //  method: 'POST',
         //  headers: {

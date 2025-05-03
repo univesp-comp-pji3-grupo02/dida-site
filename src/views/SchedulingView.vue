@@ -1,7 +1,17 @@
 <template>
     <div class="scheduling">
       <div class="stepConteiner">
-        <component :is="currentStepComponent" @next="nextStep" @prev="prevStep" @postScheduling="postSchedulingDetails" :services="services"/>
+        <component
+        :is="currentStepComponent"
+        @next="nextStep"
+        @prev="prevStep"
+        @postScheduling="postSchedulingDetails"
+        @selectedServices="handleSelectedServices"
+        @fullDateTimeSelected="handleDate"
+        @setUserData="handleUserData"
+        :services="services"
+        :dataScheduling="dataScheduling"
+      />
       </div>
     </div>
 </template>
@@ -310,7 +320,12 @@ export default {
           fixedValue: true
         }
       },
-      step: 1
+      step: 1,
+      dataScheduling: {
+        serviceScheduling: {},
+        dateScheduling: {},
+        userData: {}
+      }
     }
   },
   computed: {
@@ -326,13 +341,29 @@ export default {
   },
   methods: {
     nextStep () {
-      if (this.step < 4) this.step++
+      if (this.step < 5) this.step++
     },
     prevStep () {
       if (this.step > 1) this.step--
     },
     postSchedulingDetails () {
+      alert('Agendamento realizado com sucesso!')
       this.$router.push('/welcome')
+    },
+    handleSelectedServices (selectedServices) {
+      const temporarylyList = []
+      for (const service of selectedServices) {
+        temporarylyList.push(service)
+      }
+      this.dataScheduling.serviceScheduling = temporarylyList
+    },
+    handleDate (date) {
+      this.dataScheduling.dateScheduling = date
+      console.log('data date:', this.dataScheduling)
+    },
+    handleUserData (userData) {
+      this.dataScheduling.userData = userData
+      console.log('data user:', this.dataScheduling)
     }
   }
 }

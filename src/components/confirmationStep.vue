@@ -3,16 +3,22 @@
     <h1>Confirme seu agendamento </h1>
     <h2><img src="img/icons/scissorsIcon.svg" alt="icon of a calendar" class="svgIcons"> Por favor, revise os dados abaixo antes de finalizar: </h2>
     <br>
-    <p><strong><img src="img/icons/calendarIcon.svg" alt="icon of a calendar" class="svgIcons"> Data:</strong> [data escolhida]</p>
-    <p><strong><img src="img/icons/clockIcon.svg" alt="icon of a clock" class="svgIcons"> Horario:</strong> [horario escolhida]</p>
+    <p><strong><img src="img/icons/calendarIcon.svg" alt="icon of a calendar" class="svgIcons"> Data:</strong> {{dataScheduling.dateScheduling.date}}</p>
+    <p><strong><img src="img/icons/clockIcon.svg" alt="icon of a clock" class="svgIcons"> Horario:</strong> {{dataScheduling.dateScheduling.hour}}</p>
     <p><strong><img src="img/icons/briefCaseIcon.svg" alt="icon of a briefcase" class="svgIcons"> Serviços:</strong> </p>
+
     <ul>
-        <li>Corte - a partir de R$40,00</li>
-        <li> Hidratação - R$80,00</li>
+        <li v-for="(service, index) in dataScheduling.serviceScheduling"
+            :key="index">
+            {{ service.name }} -
+            <span v-if="service.fixedValue">R${{ service.price }}</span>
+            <span v-else>A partir de R${{ service.price }}</span>
+        </li>
     </ul>
-    <p><strong><img src="img/icons/cashIcon.svg" alt="icon of a money bill" class="svgIcons"> Valor estimado:</strong> a partir deR$120,00</p>
+
+    <p><strong><img src="img/icons/cashIcon.svg" alt="icon of a money bill" class="svgIcons"> Valor estimado:</strong> a partir de R$ {{calculatePrice}}</p>
 </div>
-<button class="button-prev-next" @click="$emit('postScheduling')" >Agendar</button>
+<button class="button-prev-next" @click="SchedulingComplete" >Agendar</button>
 <button id="cancel-button" class="button-prev-next" @click="$emit('prev')" >cancelar</button>
 </template>
 
@@ -59,6 +65,28 @@
 
 <script>
 export default {
-  name: 'ConfirmationStep'
+  name: 'ConfirmationStep',
+  props: {
+    dataScheduling: {
+      type: Object,
+      required: true
+    }
+  },
+  computed: {
+    calculatePrice () {
+      let totalService = 0
+      for (const service of this.dataScheduling.serviceScheduling) {
+        totalService += service.price
+      }
+      return totalService
+    }
+  },
+  methods: {
+    SchedulingComplete () {
+      this.$emit('postScheduling')
+      console.log(this.dataScheduling)
+    }
+
+  }
 }
 </script>

@@ -14,7 +14,7 @@
   <div class="scheduling-h1"></div>
 
   <div class="scheduling-container">
-    <CalendarGrid @openModal="openModal" />
+    <CalendarGrid @openModal="openModal" @sendFullDate="handleDate" />
   </div>
 
   <div class="map-key">
@@ -54,7 +54,7 @@
         </button>
       </div>
 
-      <button class="button-prev-next " @click="$emit('next')">Continuar</button>
+      <button class="button-prev-next " @click="notNullNext">Continuar</button>
     </div>
   </div>
 </template>
@@ -69,8 +69,8 @@ export default {
   data () {
     return {
       hourTime: ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-      timeSelected: null
-
+      timeSelected: null,
+      fullDateTime: {}
     }
   },
   methods: {
@@ -86,8 +86,20 @@ export default {
     },
     selectedTime (hour) {
       this.timeSelected = hour
+      this.fullDateTime.hour = hour
+    },
+    notNullNext () {
+      if (this.timeSelected === null) {
+        alert('selecione um horario')
+      } else {
+        this.$emit('selectedTime', this.timeSelected)
+        this.$emit('next')
+        this.$emit('fullDateTimeSelected', this.fullDateTime)
+      }
+    },
+    handleDate (fullDate) {
+      this.fullDateTime.date = fullDate
     }
-
   }
 }
 </script>

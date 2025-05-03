@@ -8,23 +8,30 @@
     </div>
     <div class="form-container">
       <label for="nome">Nome</label>
-      <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
-      <label for="nome">Telefone</label>
+      <input  v-model="userName" type="text" id="nome" name="nome" placeholder="Seu nome" required >
+      <label for="phone">Telefone</label>
       <input
     type="tel"
-    v-model="telefone"
+    v-model="userPhone"
     @input="phoneFormat"
     placeholder="(xx) xxxxx-xxxx"
     maxlength="15"
   />
     </div>
-    <button class="button-prev-next" @click="$emit('next')" >Continuar</button>
+    <button class="button-prev-next" @click="getData" >Continuar</button>
     <button class="button-prev-next" @click="$emit('prev')" >Voltar</button>
 </template>
 
 <script>
 export default {
   name: 'DataStep',
+  data () {
+    return {
+      userData: {},
+      userPhone: '',
+      userName: ''
+    }
+  },
   methods: {
     phoneFormat (event) {
       let telefone = event.target.value.replace(/\D/g, '')
@@ -43,8 +50,15 @@ export default {
       }
 
       event.target.value = telefone
+    },
+    getData () {
+      this.userData = {
+        userName: this.userName,
+        userPhone: this.userPhone
+      }
+      this.$emit('setUserData', this.userData)
+      this.$emit('next')
     }
-
   }
 }
 </script>
