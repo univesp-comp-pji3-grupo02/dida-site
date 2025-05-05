@@ -32,8 +32,11 @@
   padding: 0 1rem;
   border: none;
   color: #9B6F58;
+  transition: all 0.3s ease-in-out;
 }
-
+.button-prev-next:hover {
+  color: #744e3a;
+}
 .scheduling {
   display: flex;
   flex-direction: column;
@@ -74,14 +77,14 @@
 }
 
 .scheduling-modal-container {
-  background-color: #73361b;
+  background-color: #E0B79F;
   width: 70%;
   height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
-  border-radius: 10px;
+  border-radius: 30px;
   padding: 1rem 2rem;
 }
 
@@ -97,10 +100,10 @@
 }
 
 .scheduling-time-modal button {
-  background-color: #BA8B7B;
+  background-color: #E6C5B2;
   color: #000;
-  padding: 1rem 2rem;
-  border-radius: 10px;
+  padding: 0.5rem 2rem;
+  border-radius: 20px;
   text-align: center;
   font-size: 1rem;
   font-weight: bold;
@@ -359,11 +362,9 @@ export default {
     },
     handleDate (date) {
       this.dataScheduling.dateScheduling = date
-      console.log('data date:', this.dataScheduling)
     },
     handleUserData (userData) {
       this.dataScheduling.userData = userData
-      console.log('data user:', this.dataScheduling)
     }
   }
 }

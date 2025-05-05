@@ -57,8 +57,7 @@
 
 <script>
 const WEEK_DAYS = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sab']
-// Exemplos de dias sem disponibilidade (strings no formato 'DD/MM/YYYY')
-const notAvailableDays = ['01/05/2025', '02/05/2025', '03/05/2025', '04/05/2025', '05/05/2025']
+const notAvailableDays = ['22/05/2025']
 export default {
   name: 'CalendarGrid',
   data () {

@@ -3,7 +3,7 @@
     <h1>Confirme seu agendamento </h1>
     <h2><img src="img/icons/scissorsIcon.svg" alt="icon of a calendar" class="svgIcons"> Por favor, revise os dados abaixo antes de finalizar: </h2>
     <br>
-    <p><strong><img src="img/icons/calendarIcon.svg" alt="icon of a calendar" class="svgIcons"> Data:</strong> {{dataScheduling.dateScheduling.date}}</p>
+    <p><strong><img src="img/icons/calendarIcon.svg" alt="icon of a calendar" class="svgIcons"> Data:</strong> {{formatDate(dataScheduling.dateScheduling.date)}}</p>
     <p><strong><img src="img/icons/clockIcon.svg" alt="icon of a clock" class="svgIcons"> Horario:</strong> {{dataScheduling.dateScheduling.hour}}</p>
     <p><strong><img src="img/icons/briefCaseIcon.svg" alt="icon of a briefcase" class="svgIcons"> Serviços:</strong> </p>
 
@@ -84,9 +84,16 @@ export default {
   methods: {
     SchedulingComplete () {
       this.$emit('postScheduling')
-      console.log(this.dataScheduling)
+    },
+    formatDate (data) {
+      let newData = data.split('-')
+      const year = newData[0]
+      const month = newData[1]
+      const day = newData[2]
+      newData = `${day}/${month}/${year}`
+      console.log(newData)
+      return newData
     }
-
   }
 }
 </script>

@@ -16,6 +16,7 @@
     @input="phoneFormat"
     placeholder="(xx) xxxxx-xxxx"
     maxlength="15"
+    required
   />
     </div>
     <button class="button-prev-next" @click="getData" >Continuar</button>
@@ -52,12 +53,16 @@ export default {
       event.target.value = telefone
     },
     getData () {
-      this.userData = {
-        userName: this.userName,
-        userPhone: this.userPhone
+      if (this.userName === '' || (this.userPhone === '' || this.userPhone.length < 14)) {
+        alert('Preencha todos os campos')
+      } else {
+        this.userData = {
+          userName: this.userName,
+          userPhone: this.userPhone
+        }
+        this.$emit('setUserData', this.userData)
+        this.$emit('next')
       }
-      this.$emit('setUserData', this.userData)
-      this.$emit('next')
     }
   }
 }
