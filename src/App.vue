@@ -182,7 +182,7 @@ h1 {
     align-content: center;
     list-style: none;
     border-radius: 51px;
-    width: 20.7rem;
+    width: 15rem;
     height: 4rem;
     background-color: #e0b79f;
   }
