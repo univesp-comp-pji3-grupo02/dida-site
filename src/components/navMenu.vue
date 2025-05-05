@@ -52,9 +52,9 @@ margin-bottom: 1.2rem;
   }
   .closebtn{
     position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 48px;
-  margin-left: 50px;
+    top: 0;
+    right: 4rem;
+    font-size: 3.625rem;
+    margin-left: 3.125rem;
   }
 </style>
