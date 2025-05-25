@@ -12,7 +12,7 @@
       </p>
       <p>
         Venha descobrir como o <strong>Dida Cabeleireira</strong> é capaz de valorizar sua beleza e revelar sua personalidade.
-      </p>"
+      </p>
       <p>
       <strong>Horário de funcionamento</strong>
       Terça a sábado das 9 às 18h.
