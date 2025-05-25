@@ -56,20 +56,20 @@ export default {
       } else {
         this.$emit('selectedServices', this.selectedServices)
         this.$emit('next')
-        // fetch('http://localhost:8000/scheduling', {
-        //  method: 'POST',
-        //  headers: {
-        //    'Content-Type': 'application/json'
-        //  },
-        //  body: JSON.stringify(this.selectedServices) // Lista de objetos
-        // })
-        //  .then(response => response.json())
-        //  .then(data => {
-        //    console.log('Success:', data)
-        //  })
-        //  .catch((error) => {
-        //    console.error('Error:', error)
-        //  })
+        fetch('http://localhost:8000/scheduling', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(this.selectedServices) // Lista de objetos
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log('Success:', data)
+          })
+          .catch((error) => {
+            console.error('Error:', error)
+          })
       }
     }
   }
